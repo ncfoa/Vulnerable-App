@@ -1,0 +1,140 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+  <div class="container">
+  <div class="row">
+  <div class="col-md-12">
+  <div class="breadcrumb-wrapper">
+  <h2 class="product-title">Candidate Board</h2>
+  <ol class="breadcrumb">
+  <li><a href="#"><i class="ti-home"></i> Home</a></li>
+  <li class="current"> Candidate</li>
+  </ol>
+  </div>
+  
+  </div>
+  </div>
+  </div>
+</div>
+
+<div id="content">
+  <div class="container">
+  <div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12">
+  <div class="right-sideabr">
+  <div class="inner-box">
+  <ul class="lest">
+  <li><a class="active">My CV</a></li>
+  <li *ngIf="!userdata.isActive"><a href="/candidate/create-cv" routerLink="/candidate/create-cv">Create CV</a></li>
+  <li *ngIf="userdata.isActive"><a href="/candidate/edit-cv" routerLink="/candidate/edit-cv">Edit CV</a></li>
+  <li><a href="/candidate/change-password" routerLink="/candidate/change-password">Change Password</a></li>
+  </ul>
+  <ul class="lest item">
+  <li><a href="/candidate/applications" routerLink="/candidate/applications">My Applications</a></li>
+  </ul>
+  <ul class="lest">
+  <li><a href (click)="logout()">Logout</a></li>
+  </ul>
+  </div>
+  </div>
+  </div>
+  <div class="col-md-8 col-sm-8 col-xs-12">
+  <div class="inner-box my-resume">
+  <div class="author-resume">
+  <div class="thumb">
+  <img src="assets/img/resume/profile_photo.png" alt="Profile photo">
+  </div>
+  <div class="author-info">
+    <span class="address">
+      <h3> {{userdata.firstName}} {{userdata.lastName}}</h3>
+    </span>
+   <p>
+    <span class="address" *ngIf="userdata.age">
+      <i class="ti-id-badge"></i> {{userdata.age}} years old
+    </span>
+    <br>
+    <span class="address" *ngIf="userdata.email">
+      <i class="ti-email"></i> Email : {{userdata.email}}
+    </span>
+   </p>
+  <p>
+    <span class="address" *ngIf="userdata.address">
+      <i class="ti-location-pin"></i> Address : {{userdata.address}}
+    </span>
+    <br> 
+    <span *ngIf="userdata.phoneNumber">
+      <i class="ti-mobile"></i> Phone number : {{userdata.phoneNumber}}
+    </span>
+  </p>
+  <div class="social-link" *ngIf="userdata.socialLinks.length > 0">
+  <a *ngIf="userdata.socialLinks[0].facebook" class="facebook" target="_blank" data-original-title="facebook" href="{{userdata.socialLinks[0].facebook}}" data-toggle="tooltip" data-placement="top"><i class="fa fa-facebook"></i></a>
+  <a *ngIf="userdata.socialLinks[0].linkedin" class="linkedin" target="_blank" data-original-title="linkedin" href="{{userdata.socialLinks[0].linkedin}}" data-toggle="tooltip" data-placement="top"><i class="fa fa-linkedin"></i></a>
+  <a *ngIf="userdata.socialLinks[0].github" class="github" target="_blank" data-original-title="github" href="{{userdata.socialLinks[0].github}}" data-toggle="tooltip" data-placement="top"><i class="fa fa-github"></i></a>
+  </div>
+  </div>
+  </div>
+
+  <br><br>
+
+  <div class="alert alert-warning" *ngIf="!userdata.isActive">
+    <h4>Your CV is not active.</h4>
+  </div>
+
+  <div *ngIf="userdata.bio" class="about-me item">
+  <h3><i class="ti-user"></i> About Me</h3>
+  <p>{{userdata.bio}}</p>
+  </div>
+
+  <div *ngIf="userdata.experiences.length > 0" class="work-experence item">
+  <h3><i class="ti-briefcase"></i> Work Experience</h3>
+
+  <span *ngFor="let work of userdata.experiences">
+    <h4>{{work.title}}</h4>
+    <h5>{{work.company}}</h5>
+    <p>{{work.startDate}} - {{work.endDate}}</p>
+    <p>{{work.description}}</p>
+  <br>
+  </span>
+  
+  </div>
+  
+  <div *ngIf="userdata.educations.length > 0" class="education item">
+  <h3><i class="ti-book"></i> Education</h3>
+
+  <span *ngFor="let education of userdata.educations">
+  <h4>{{education.degree}}</h4>
+  <h5>{{education.school}}</h5>
+  <p>{{education.startDate}} - {{education.endDate}}</p>
+ 
+  <br>
+  </span>
+  </div>
+
+  <div *ngIf="userdata.skills.length > 0" class="item">
+    <h3><i class="ti-star"></i> Skills</h3>
+  
+    <span *ngFor="let skill of userdata.skills">
+    <h4>{{skill.name}} <mat-progress-bar mode="determinate" color="warn" value="{{skill.value}}"></mat-progress-bar></h4>
+    </span>
+
+  </div>
+
+  <div *ngIf="userdata.languages.length > 0" class="item">
+    <h3><i class="ti-tag"></i> Languages</h3>
+  
+    <span *ngFor="let language of userdata.languages">
+    <p>{{language}}</p>
+    </span>
+  </div>
+
+  <div *ngIf="userdata.hobbies.length > 0" class="item">
+    <h3><i class="ti-heart"></i> Hobbies</h3>
+  
+    <span *ngFor="let hobbie of userdata.hobbies">
+    <p>{{hobbie}}</p>
+    </span>
+  </div>
+
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>

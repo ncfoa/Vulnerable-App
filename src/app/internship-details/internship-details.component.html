@@ -1,0 +1,136 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="breadcrumb-wrapper">
+    <h2 class="product-title">Internship details</h2>
+    <ol class="breadcrumb">
+    <li><a href="#"><i class="ti-home"></i> Home</a></li>
+    <li class="current">Internship details</li>
+    </ol>
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<section class="job-detail section" *ngIf="internship">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="header-detail">
+    <div class="header-content pull-left">
+    <h3><a>{{internship.title}}</a> <span class="full-time">{{internship.type}}</span></h3>
+    
+    <p><span>Date Posted : </span><strong class="price">{{internship.createdDate}}</strong></p>
+    <p><a class="text"><i class="fa fa-map-marker"></i><strong class="price"> {{internship.location}}</strong></a></p>
+    <p><a class="text"><i class="fa fa-calendar"></i><strong class="price"> {{internship.startDate}} - {{internship.endDate}}</strong></a></p>
+    
+    </div>
+    <div class="detail-company pull-right text-right">
+    <div class="img-thum">
+    <img class="img-responsive" src="assets/img/logo.png" alt="logo">
+    </div>
+    <div class="name">
+    <h1>{{internship.company.companyName}}</h1>
+    <h5>{{internship.company.address}}, {{internship.company.city}} </h5>
+    <p>{{internship.company.country}}</p>
+    </div>
+    </div>
+    <div class="clearfix">
+    <div class="meta">
+    <span><a class="btn btn-border btn-sm"><i class="ti-desktop"></i> {{internship.category}}</a></span>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-8 col-sm-12 col-xs-12">
+    <div class="content-area">
+    <div class="clearfix">
+    <div class="box">
+    <h4>Internship description</h4>
+    <p>{{internship.description}}</p>
+    <h4>Qualification</h4>
+    <p>Qualified candidates for this internship should have the following technical skills :</p>
+    <ul *ngFor="let keyword of internship.keywords">
+    <li><i class="ti-check-box"></i>{{keyword}}</li>
+    </ul>
+    <!-- 
+    <h4>Key responsibilities also include</h4>
+    <ul>
+    <li><i class="ti-check-box"></i>Provide technical health advice to Head of Country Programmes and field advisors at all key stages of the project management cycle including needs assessment.</li>
+    <li><i class="ti-check-box"></i>Technical strategy and design, implementation as well as sector specific monitoring and evaluation.</li>
+    <li><i class="ti-check-box"></i>This includes travel to field programmes as well as review of proposals, key reports and surveys prior to external submission.</li>
+    </ul>
+    <h4>Requirements</h4>
+    <ul>
+    <li><i class="ti-check-box"></i>Must have minimum of 3 years experience running, maneuvering, driving, and navigating equipment such as bulldozer, excavators, rollers, and front-end loaders.</li>
+    <li><i class="ti-check-box"></i>Must have minimum of 3 years experience running, maneuvering, driving, and navigating equipment such as bulldozer, excavators, rollers, and front-end loaders.
+    Strongly prefer candidates with High School Diploma</li>
+    </ul>
+    <h4>Benefits</h4>
+    <ul>
+    <li><i class="ti-check-box"></i>Must have minimum of 3 years experience running, maneuvering, driving, and navigating equipment such as bulldozer, excavators, rollers, and front-end loaders.</li>
+    <li><i class="ti-check-box"></i>Strongly prefer candidates with High School Diploma</li>
+    </ul>
+    -->
+
+    <a href="#" class="btn btn-common">Apply Now</a>
+    </div>
+    </div>
+    </div>
+
+    </div>
+    <div class="col-md-4 col-sm-12 col-xs-12">
+    <aside>
+    <div class="sidebar">
+    <div class="box">
+    <h2 class="small-title">Internship details</h2>
+    <ul class="detail-list">
+    <li>
+    <a>Location</a>
+    <span class="type-posts">{{internship.location}}</span>
+    </li>
+    <li>
+    <a>Company</a>
+    <span class="type-posts">{{internship.company.companyName}}</span>
+    </li>
+    <li>
+    <a>Type</a>
+    <span class="type-posts">{{internship.type}}</span>
+    </li>
+    <li>
+    <a>Category</a>
+    <span class="type-posts">{{internship.category}}</span>
+    </li>
+    <li>
+    <a>Keywords</a>
+    <span class="type-posts">{{internship.keywords}}</span>
+    </li>
+    
+    </ul>
+    </div>
+    <div class="box">
+    <h2 class="small-title">Company details</h2>
+    <div class="thumb">
+    <a href="#"><img src="assets/img/logo.png" alt="logo"></a>
+    </div>
+    <div class="clearfix">
+    <div class="text-box">
+    <h4><a>{{internship.company.companyName}}</a></h4>
+    <p><a class="text"><i class="fa fa-info-circle"></i>{{internship.company.description}}</a></p>
+    <p><a class="text"><i class="fa fa-map-marker"></i>{{internship.company.city}}, {{internship.company.country}}</a></p>
+    
+     
+    <span><a class="btn btn-border btn-sm" href="{{internship.company.website}}" target="_blank"><i class="ti-link"></i> Website</a></span>
+   
+    </div>
+    </div>
+    </div>
+    
+    </div>
+    </aside>
+    </div>
+    </div>
+    </div>
+    </section>

@@ -1,0 +1,219 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+  <div class="container">
+  <div class="row">
+  <div class="col-md-12">
+  <div class="breadcrumb-wrapper">
+  <h2 class="product-title">Recruiter Board</h2>
+  <ol class="breadcrumb">
+  <li><a href="#"><i class="ti-home"></i> Home</a></li>
+  <li class="current">Recruiter</li>
+  </ol>
+
+  </div>
+  </div>
+  </div>
+  </div>
+</div>
+
+
+<div id="content">
+  <div class="container">
+  <div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12">
+  <div class="right-sideabr">
+  
+  <div class="inner-box">
+  <ul class="lest">
+  <li><a class="active">My Profile</a></li>
+  <li><a href="/recruiter/edit-profile" routerLink="/recruiter/edit-profile">Edit Profile</a></li>
+  <li><a href="/recruiter/change-password" routerLink="/recruiter/change-password">Change Password</a></li>
+  </ul>
+  <ul class="lest item">
+  <li><a href="/recruiter/offers" routerLink="/recruiter/offers">Manage offers</a></li>
+  <li><a href="/recruiter/post-offer" routerLink="/recruiter/post-offer">Post an offer</a></li>
+  </ul>
+  <ul class="lest">
+  <li><a href (click)="logout()">Logout</a></li>
+  </ul>
+  </div>
+  </div>
+  </div>
+
+
+  <div class="col-md-8 col-sm-8 col-xs-12">
+  <div class="inner-box my-resume">
+  <div class="author-resume">
+  <div class="thumb">
+  <img src="assets/img/resume/profile_photo.png" alt="Profile photo">
+  </div>
+  <div class="author-info">
+    <span class="address">
+      <h3> {{userdata.companyName}}</h3>
+    </span>
+   <p>
+    <span class="address" *ngIf="userdata.email">
+      <i class="ti-email"></i> Email : {{userdata.email}}
+    </span>
+   </p>
+  <p>
+    <span class="address" *ngIf="userdata.address">
+      <i class="ti-location-pin"></i> {{userdata.address}}, {{userdata.city}}
+    </span>
+  </p>
+  <p>
+    <span class="address">
+      <i class="ti-location-arrow"></i> {{userdata.province}}, {{userdata.country}}
+    </span>
+  </p>
+  <p>
+    <span class="address" *ngIf="userdata.description">
+      <i class="ti-tag"></i> Description : {{userdata.description}}
+    </span>
+  </p>
+  <p>
+    <span class="social-link" *ngIf="userdata.website">
+      <i class="ti-link"></i> Website :
+      <a *ngIf="userdata.website" target="_blank" data-original-title="website" href="{{userdata.website}}" data-toggle="tooltip" data-placement="top"><i class="fa fa-globe"></i></a>
+    </span>
+  </p>
+  
+  </div>
+  </div>
+
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+<!-- 
+<div id="content">
+  <div class="container">
+  <div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12">
+  <div class="right-sideabr">
+
+  <div class="inner-box">
+    <ul class="lest">
+    <li><a href="resume.html">My Pofile</a></li>
+    <li><a href="resume.html">Edit Informations</a></li>
+    <li><a href="change-password.html">Change Password</a></li>
+    </ul>
+    <ul class="lest item">
+    <li><a class="active" href="manage-applications.html">Manage offers</a></li>
+    <li><a href="manage-applications.html">Manage applications</a></li>
+    <li><a href="manage-applications.html">Post an offer</a></li>
+    </ul>
+    <ul class="lest">
+    <li><a href (click)="logout()">Logout</a></li>
+    </ul>
+  </div>
+
+  </div>
+  </div>
+  <div class="col-md-8 col-sm-8 col-xs-12">
+  <div class="job-alerts-item candidates">
+  <h3 class="alerts-title">Manage Offers</h3>
+  <div class="alerts-list">
+  <div class="row">
+  <div class="col-md-3"> 
+  <p>Name</p>
+  </div>
+  <div class="col-md-3">
+  <p>Keywords</p>
+  </div>
+  <div class="col-md-3">
+  <p>Candidates</p>
+  </div>
+  <div class="col-md-3">
+  <p>Featured</p>
+  </div>
+  </div>
+  </div>
+  <div class="alerts-content">
+  <div class="row">
+  <div class="col-md-3">
+  <h3>Web Designer</h3>
+  <span class="location"><i class="ti-location-pin"></i> Manhattan, NYC</span>
+  </div>
+  <div class="col-md-3">
+  <p><span class="full-time">Full-Time</span></p>
+  </div>
+  <div class="col-md-3">
+  <div class="can-img"><a href="#"><img src="assets/img/jobs/candidates.png" alt=""></a></div>
+  </div>
+  <div class="col-md-3">
+  <p><i class="ti-star"></i></p>
+  </div>
+  </div>
+  </div>
+  <div class="alerts-content">
+  <div class="row">
+  <div class="col-md-3">
+  <h3>Web Designer</h3>
+  <span class="location"><i class="ti-location-pin"></i> Manhattan, NYC</span>
+  </div>
+  <div class="col-md-3">
+  <p><span class="full-time">Full-Time</span></p>
+  </div>
+  <div class="col-md-3">
+  <div class="can-img"><a href="#"><img src="assets/img/jobs/candidates.png" alt=""></a></div>
+  </div>
+  <div class="col-md-3">
+  <p><i class="ti-star"></i></p>
+  </div>
+  </div>
+  </div>
+  <div class="alerts-content">
+  <div class="row">
+  <div class="col-md-3">
+  <h3>Web Designer</h3>
+  <span class="location"><i class="ti-location-pin"></i> Manhattan, NYC</span>
+  </div>
+  <div class="col-md-3">
+  <p><span class="full-time">Full-Time</span></p>
+  </div>
+  <div class="col-md-3">
+  <div class="can-img"><a href="#"><img src="assets/img/jobs/candidates.png" alt=""></a></div>
+  </div>
+  <div class="col-md-3">
+  <p><i class="ti-star"></i></p>
+  </div>
+  </div>
+  </div>
+  <div class="alerts-content">
+  <div class="row">
+  <div class="col-md-3">
+  <h3>Web Designer</h3>
+  <span class="location"><i class="ti-location-pin"></i> Manhattan, NYC</span>
+  </div>
+  <div class="col-md-3">
+  <p><span class="full-time">Full-Time</span></p>
+  </div>
+  <div class="col-md-3">
+  <div class="can-img"><a href="#"><img src="assets/img/jobs/candidates.png" alt=""></a></div>
+  </div>
+  <div class="col-md-3">
+  <p><i class="ti-star"></i></p>
+  </div>
+  </div>
+  </div>
+  
+  <br>
+  <ul class="pagination">
+  <li class="active"><a href="#" class="btn btn-common"><i class="ti-angle-left"></i> prev</a></li>
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+   <li><a href="#">3</a></li>
+  <li><a href="#">4</a></li>
+  <li><a href="#">5</a></li>
+  <li class="active"><a href="#" class="btn btn-common">Next <i class="ti-angle-right"></i></a></li>
+  </ul>
+  
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+  -->

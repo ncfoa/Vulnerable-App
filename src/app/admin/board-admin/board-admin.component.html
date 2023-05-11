@@ -1,0 +1,125 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+  <div class="container">
+  <div class="row">
+  <div class="col-md-12">
+  <div class="breadcrumb-wrapper">
+  <h2 class="product-title">Admin Board</h2>
+  <ol class="breadcrumb">
+  <li><a href="#"><i class="ti-home"></i> Home</a></li>
+  <li class="current">Dashboard</li>
+  </ol>
+
+  </div>
+  </div>
+  </div>
+  </div>
+</div>
+
+
+<div id="content">
+  <div class="container">
+  <div class="row">
+  <div class="col-md-4 col-sm-4 col-xs-12">
+  <div class="right-sideabr">
+  
+  <div class="inner-box">
+  <ul class="lest">
+  <li><a class="active">Dashboard</a></li>
+  <li><a href="/admin/change-password" routerLink="/admin/change-password">Change Password</a></li>
+  </ul>
+  <ul class="lest item">
+  <li><a href="/admin/manage-candidates" routerLink="/admin/manage-candidates">Manage Candidates</a></li>
+  <li><a href="/admin/manage-recruiters" routerLink="/admin/manage-recruiters">Manage Recruiters</a></li>
+  <li><a href="/admin/manage-offers" routerLink="/admin/manage-offers">Manage Offers</a></li>
+  </ul>
+  <ul class="lest">
+  <li><a href (click)="logout()">Logout</a></li>
+  </ul>
+  </div>
+  </div>
+  </div>
+
+
+  <div class="col-md-8 col-sm-8 col-xs-12">
+    <div class="job-alerts-item">
+
+      <div class="container">
+        <h3 class="alerts-title">Dashboard</h3>
+
+      <div class="col-md-9 col-sm-9 col-xs-12">
+      <div class="row">
+        <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+          <a>
+          <div class="icon">
+          <i class="ti-user"></i>
+          </div>
+          <h3>Total Users</h3>
+          <h1 class="counter" *ngIf="candidates && recruiters">{{candidates + recruiters}}</h1>
+          </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+          <a>
+          <div class="icon">
+          <i class="ti-id-badge"></i>
+          </div>
+          <h3>Total Candidates</h3>
+          <h1 class="counter" *ngIf="candidates">{{candidates}}</h1>
+          </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+          <a>
+          <div class="icon">
+          <i class="ti-briefcase"></i>
+          </div>
+          <h3>Total Recruiters</h3>
+          <h1 class="counter" *ngIf="recruiters">{{recruiters}}</h1>
+          </a>
+        </div>
+
+      </div>
+      </div>
+      
+      <div class="col-md-9 col-sm-9 col-xs-12">
+      <div class="row">
+
+        <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+          <a>
+          <div class="icon">
+          <i class="ti-announcement"></i>
+          </div>
+          <h3>Total Offers</h3>
+          <h1 class="counter" *ngIf="offers">{{offers}}</h1>
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+          <a>
+          <div class="icon">
+          <i class="ti-check-box"></i>
+           </div>
+          <h3>Total Applications</h3>
+          <h1 class="counter" *ngIf="applications">{{applications}}</h1>
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+          <a>
+          <div class="icon">
+          <i class="ti-write"></i>
+          </div>
+          <h3>Total Tests</h3>
+          <h1 class="counter">50</h1>
+          </a>
+        </div>
+
+      </div>
+      </div>
+      
+      </div>
+  
+
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>

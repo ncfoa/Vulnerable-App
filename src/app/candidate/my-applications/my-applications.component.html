@@ -1,0 +1,80 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="breadcrumb-wrapper">
+    <h2 class="product-title">Candidate Board</h2>
+    <ol class="breadcrumb">
+    <li><a href="#"><i class="ti-home"></i> Home</a></li>
+    <li><a href="/candidate" routerLink="/candidate">Candidate</a></li>
+    <li class="current">Applications</li>
+    </ol>
+    </div>
+    
+    </div>
+    </div>
+    </div>
+  </div>
+  
+  <div id="content">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-12">
+    <div class="right-sideabr">
+    <div class="inner-box">
+    <ul class="lest">
+    <li><a href="/candidate" routerLink="/candidate">My CV</a></li>
+    <li *ngIf="!userdata.isActive"><a href="/candidate/create-cv" routerLink="/candidate/create-cv">Create CV</a></li>
+    <li *ngIf="userdata.isActive"><a href="/candidate/edit-cv" routerLink="/candidate/edit-cv">Edit CV</a></li>
+    <li><a href="/candidate/change-password" routerLink="/candidate/change-password">Change Password</a></li>
+    </ul>
+    <ul class="lest item">
+    <li><a class="active">My Applications</a></li>
+    </ul>
+    <ul class="lest">
+    <li><a href (click)="logout()">Logout</a></li>
+    </ul>
+    </div>
+    </div>
+    </div>
+
+    <div class="col-md-8 col-sm-8 col-xs-12">
+      <div class="job-alerts-item">
+      <h3 class="alerts-title">My Applications</h3>
+      
+      <div class="table-responsive row">
+          <table *ngIf="applications" class="table table-bordered table-hover" id="applications-table">
+              <thead class="thead-default thead-lg">
+                  <tr>
+                      <th>Offer title</th>
+                      <th>Company</th>
+                      <th>Type</th>
+                      <th>Apply date</th>
+                      <th>Test score</th>
+                      <th>Status</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let application of applications">
+                      <td>{{application.offer.title}}</td>
+                      <td>{{application.offer.company.companyName}}</td>
+                      <td>{{application.offer.type}}</td>
+                      <td>{{application.applyDate}}</td>
+                      <td>{{application.test.score}}</td>
+                      <td>
+                          <span class="badge alert-success badge-pill" *ngIf="application.status == Approved">Approved</span>
+                          <span class="badge alert-warning badge-pill" *ngIf="application.status == Pending">Pending</span>
+                          <span class="badge alert-danger badge-pill" *ngIf="application.status == Rejected">Rejected</span>
+                      </td>
+                                        
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+      
+      </div>
+      </div>
+  
+    </div>
+    </div>
+    </div>

@@ -1,0 +1,138 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+        <div class="breadcrumb-wrapper">
+        <h2 class="product-title">Recruiter Register</h2>
+        <ol class="breadcrumb">
+        <li><a href="#"><i class="ti-home"></i> Home</a></li>
+        <li class="current">Recruiter / Register</li>
+        </ol>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div id="content" class="my-account">
+    <div class="container">
+      <div class="row">
+  
+        <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-8 cd-user-modal">
+          <div class="my-account-form">
+  
+        <div id="cd-signup">
+          <div class="page-login-form register">
+          <form class="login-form" *ngIf="!isSuccessful" name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+          
+          <div class="form-group">
+          <div class="input-icon">
+          <i class="ti-user"></i>
+          <input id="sender-email" class="form-control" placeholder="Company name" type="text" name="companyName" [(ngModel)]="form.companyName" required
+              minlength="3"
+              maxlength="20"
+              #companyName="ngModel">
+          </div>
+          <div class="alert-danger" *ngIf="f.submitted && companyName.invalid">
+            <div *ngIf="companyName.errors.required">Company name is required</div>
+            <div *ngIf="companyName.errors.minlength">
+              Company name must be at least 3 characters
+            </div>
+            <div *ngIf="companyName.errors.maxlength">
+              Company name must be at most 20 characters
+            </div>
+          </div>
+          </div>
+  
+          <div class="form-group">
+            <div class="input-icon">
+            <i class="ti-email"></i>
+            <input id="sender-email" class="form-control" name="companyEmail" placeholder="Email" type="email" [(ngModel)]="form.companyEmail" required #companyEmail="ngModel">
+            </div>
+            <div class="alert-danger" *ngIf="f.submitted && companyEmail.invalid">
+              <div *ngIf="companyEmail.errors.required">Email is required</div>
+              <div *ngIf="companyEmail.errors.email">
+                Email must be a valid email address
+              </div>
+            </div>
+            </div>
+  
+          <div class="form-group">
+          <div class="input-icon">
+          <i class="ti-location-pin"></i>
+          <input id="sender-email" class="form-control" name="address" placeholder="Address" type="text" [(ngModel)]="form.address" required #address="ngModel">
+          </div>
+          <div class="alert-danger" *ngIf="f.submitted && address.invalid">
+            <div *ngIf="address.errors.required">Address is required</div>
+          </div>
+          </div>
+
+          <div class="form-group">
+          <div class="input-icon">
+          <i class="ti-location-pin"></i>
+          <input id="sender-email" class="form-control" name="city" placeholder="City" type="text" [(ngModel)]="form.city" required #city="ngModel">
+          </div>
+          <div class="alert-danger" *ngIf="f.submitted && city.invalid">
+            <div *ngIf="city.errors.required">City is required</div>
+          </div>
+          </div>
+
+          <div class="form-group">
+          <div class="input-icon">
+          <i class="ti-location-pin"></i>
+          <input id="sender-email" class="form-control" name="province" placeholder="Province" type="text" [(ngModel)]="form.province" required #province="ngModel">
+          </div>
+          <div class="alert-danger" *ngIf="f.submitted && province.invalid">
+            <div *ngIf="province.errors.required">Province is required</div>
+          </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-icon">
+            <i class="ti-location-pin"></i>
+            <input id="sender-email" class="form-control" name="country" placeholder="Country" type="text" [(ngModel)]="form.country" required #country="ngModel">
+            </div>
+            <div class="alert-danger" *ngIf="f.submitted && country.invalid">
+              <div *ngIf="country.errors.required">Country is required</div>
+            </div>
+            </div>
+
+          <div class="form-group">
+          <div class="input-icon">
+          <i class="ti-lock"></i>
+          <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel">
+          </div>
+          <div class="alert-danger" *ngIf="f.submitted && password.invalid">
+            <div *ngIf="password.errors.required">Password is required</div>
+            <div *ngIf="password.errors.minlength">
+              Password must be at least 6 characters
+            </div>
+          </div>
+          </div>
+  
+          <button class="btn btn-common log-btn">Register</button>
+  
+          <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+            Signup failed!<br />{{ errorMessage }}
+          </div>
+  
+          </form>
+  
+          <div class="alert alert-success" *ngIf="isSuccessful">
+            Your registration is successful!
+          </div>
+
+          <div class="checkbox-item">
+            <p class="cd-form-bottom-message"><a href="/recruiter/login" routerLink="/recruiter/login">Already have an account?</a></p>
+          </div>
+  
+          </div>
+          </div>
+  
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  </div>

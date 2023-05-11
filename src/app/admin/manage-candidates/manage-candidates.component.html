@@ -1,0 +1,139 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="breadcrumb-wrapper">
+    <h2 class="product-title">Admin Board</h2>
+    <ol class="breadcrumb">
+    <li><a href="#"><i class="ti-home"></i> Home</a></li>
+    <li><a href="/admin" routerLink="/admin">Dashboard</a></li>
+    <li class="current">Manage Candidates</li>
+    </ol>
+  
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+  
+  
+  <div id="content">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-3 col-sm-3 col-xs-12">
+    <div class="right-sideabr">
+    
+    <div class="inner-box">
+        <ul class="lest">
+            <li><a href="/admin" routerLink="/admin">Dashboard</a></li>
+            <li><a href="/admin/change-password" routerLink="/admin/change-password">Change Password</a></li>
+        </ul>
+        <ul class="lest item">
+            <li><a class="active">Manage Candidates</a></li>
+            <li><a href="/admin/manage-recruiters" routerLink="/admin/manage-recruiters">Manage Recruiters</a></li>
+            <li><a href="/admin/manage-offers" routerLink="/admin/manage-offers">Manage Offers</a></li>
+        </ul>
+    <ul class="lest">
+    <li><a href (click)="logout()">Logout</a></li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  
+  
+    <div class="col-md-9 col-sm-9 col-xs-12">
+        <div class="job-alerts-item">
+        <h3 class="alerts-title">Manage Candidates</h3>
+        
+
+   
+        <div class="table-responsive row">
+            <table *ngIf="candidates" class="table table-bordered table-hover" id="candidates-table">
+                <thead class="thead-default thead-lg">
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                        <th>CV status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let candidate of candidates; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{candidate.username}}</td>
+                        <td>{{candidate.firstName}}</td>
+                        <td>{{candidate.lastName}}</td>
+                        <td>{{candidate.email}}</td>
+                        <td>
+                            <span class="badge alert-success badge-pill" *ngIf="candidate.isActive">Active</span>
+                            <span class="badge alert-warning badge-pill" *ngIf="!candidate.isActive">Inactive</span>
+                        </td>
+                        <td>
+                            <a class="actions" href="#deleteCandidateModal{{candidate._id}}" data-toggle="modal" data-target="deleteCandidateModal{{candidate._id}}"><i class="ti-trash"></i></a>
+                        </td>
+                        
+                    <!-- Delete candidate Modal -->
+                    
+                    <div class="modal fade" id="deleteCandidateModal{{candidate._id}}" tabindex="-1" *ngIf="candidate._id">
+                        <div class="modal-dialog modal-dialog-centered" >
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h1>Delete candidate</h1>
+                            </div>
+                            <div class="modal-body">
+                                <div class="page-ads box">
+                                <form class="form-ad" [formGroup]="candidateForm" name="form" (ngSubmit)="f.form.valid && delete(candidate._id)" #f="ngForm" novalidate>
+                                    
+                                    <div class="form-group">
+                                         <input type="hidden" class="form-control" formControlName="_id">
+                                    </div>
+                                    
+                                    <p>Are you sure you want to delete this candidate?</p>
+						            <p class="text-danger"><small>This action cannot be undone.</small></p>                                  
+                                    
+                                    <div class="modal-footer">
+                                    <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-common log-btn">Delete candidate</button>
+                                    <br><br>
+
+                                    <div class="form-group">
+                                        <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isDeleteFailed">
+                                          Delete candidate failed! {{ errorMessage }}
+                                        </div>
+                                        <div class="alert alert-success" *ngIf="isSuccessful">
+                                            Candidate deleted successfully.
+                                          </div>
+                                    </div>
+                                    </div>
+                                    
+                            
+                                    </form>
+
+                                    </div>
+                                
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- End of delete candidate modal -->
+                    
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+        
+  
+  
+  

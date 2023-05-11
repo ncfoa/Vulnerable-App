@@ -1,0 +1,176 @@
+<!-- Header Menu -->
+
+<div class="header">
+    <section id="intro" class="section-intro">
+        <div class="logo-menu">
+
+    <nav class="navbar navbar-default main-navigation affix-top" role="navigation" data-spy="affix" data-offset-top="50">
+        <div class="container">
+  
+            <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand logo" href="/home" routerLink="home"><img src="assets/img/logo.png" alt=""></a>
+            </div>
+        
+            <div class="collapse navbar-collapse" id="navbar">
+          
+            <ul class="nav navbar-nav">
+              <li><a href="/home" routerLink="home"> Home </a>
+              </li>
+              
+              <li><a href="/candidate/create-cv" routerLink="/candidate/create-cv">Create CV </a>
+              </li>
+          
+              <li><a href="/candidate" routerLink="candidate">Candidates </a>
+              </li>
+          
+              <li><a href="/recruiter" routerLink="recruiter">Recruiters </a>
+              </li>
+          
+            </ul>
+          
+            <ul class="nav navbar-nav navbar-right float-right" *ngIf="!isLoggedIn">
+              <li class="left"><a href="/candidate/register" routerLink="candidate/register"><i class="ti-pencil-alt"></i>Register</a></li>
+              <li class="right"><a href="/candidate/login" routerLink="candidate/login"><i class="ti-lock"></i>Log In</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right float-right" *ngIf="isLoggedIn">
+
+              <li class="left" *ngIf="showAdminBoard"><a href="/admin" routerLink="admin"><i class="ti-user"></i> Admin Board</a></li>
+
+              <li class="left" *ngIf="showRecruiterBoard"><a href="/recruiter" routerLink="recruiter"><i class="ti-user"></i> Recruiter Board</a></li>
+
+              <li class="left" *ngIf="showCandidateBoard"><a href="/candidate" routerLink="candidate"><i class="ti-user"></i> Candidate Board</a></li>
+
+              <li class="right"><a href (click)="logout()"><i class="ti-shift-right"></i> Logout</a></li>
+
+            </ul>
+          
+            </div>
+          
+          </div>
+
+        <ul class="wpb-mobile-menu">
+        <li><a href="/home" routerLink="home">Home</a>
+        </li>
+        
+        <li><a href="/candidate/create-cv" routerLink="/candidate/create-cv">Create CV </a>
+        </li>
+
+        <li><a href="/candidate" routerLink="candidate">Candidates</a>
+        </li>
+
+        <li><a href="/recruiter" routerLink="recruiter">Recruiters</a>
+        </li>
+
+        <li class="btn-m"><a href="#"><i class="ti-pencil-alt"></i> Register</a></li>
+        <li class="btn-m"><a href="#"><i class="ti-lock"></i> Log In</a></li>
+        
+        </ul>
+      
+      </nav>
+      
+      </div>
+    
+      </section>
+      </div>
+
+   <router-outlet></router-outlet>
+    
+  <footer>
+  
+    <section class="footer-Content">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="widget">
+    <h3 class="block-title"><img src="assets/img/logo.png" class="img-responsive" alt="Footer Logo"></h3>
+    
+    <p>
+      InternBridge is a free platform for internship seekers and students, where you can create a cv, search for suitable internship offers based on your skills, and apply to them directly by passing a required test. 
+    </p>
+    
+    </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="widget">
+    <h3 class="block-title">Quick Links</h3>
+    <ul class="menu">
+    <li><a href="/candidate/create-cv" routerLink="/candidate/create-cv">Create CV</a></li>
+    <li><a href="/candidate/register" routerLink="/candidate/register">Candidate Register</a></li>
+    <li><a href="/candidate/login" routerLink="/candidate/login">Candidate Login</a></li>
+    <li><a href="/recruiter/register" routerLink="/recruiter/register">Recruiter Register</a></li>
+    <li><a href="/recruiter/login" routerLink="/recruiter/login">Recruiter Login</a></li>
+    </ul>
+    </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="widget">
+    <h3 class="block-title">Trending Internships</h3>
+    <ul class="menu">
+    <li><a href="#">Android Developer</a></li>
+    <li><a href="#">Senior Accountant</a></li>
+    <li><a href="#">Frontend Developer</a></li>
+    <li><a href="#">Junior Tester</a></li>
+    <li><a href="#">Project Manager</a></li>
+    </ul>
+    </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="widget">
+    <h3 class="block-title">Follow Us</h3>
+    <div class="bottom-social-icons social-icon">
+    <a class="twitter" href="https://twitter.com/" target="_blank"><i class="ti-twitter-alt"></i></a>
+    <a class="facebook" href="https://wwww.facebook.com/" target="_blank"><i class="ti-facebook"></i></a>
+    <a class="linkedin" href="https://www.linkedin.com/" target="_blank"><i class="ti-linkedin"></i></a>
+    </div>
+    <p>Join our mailing list to stay up to date and get notices about our new internship offers!</p>
+    <form class="subscribe-box">
+    <input type="text" placeholder="Your email">
+    <input type="submit" class="btn-system" value="Send">
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    
+    
+    <div id="copyright">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="site-info text-center">
+    <p>All Rights reserved &copy; 2021 - Designed & Developed by <a target="_blank" href="https://github.com/ncfoa/">Firas </a> & <a target="_blank" href="https://github.com/selmenach/"> Selmen</a></p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    </footer>
+    
+    
+    <a href="#" class="back-to-top">
+    <i class="ti-arrow-up"></i>
+    </a>
+    <div id="loading">
+    <div id="loading-center">
+    <div id="loading-center-absolute">
+    <div class="object" id="object_one"></div>
+    <div class="object" id="object_two"></div>
+    <div class="object" id="object_three"></div>
+    <div class="object" id="object_four"></div>
+    <div class="object" id="object_five"></div>
+    <div class="object" id="object_six"></div>
+    <div class="object" id="object_seven"></div>
+    <div class="object" id="object_eight"></div>
+    </div>
+    </div>
+    </div>
+

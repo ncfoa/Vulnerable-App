@@ -1,0 +1,301 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="breadcrumb-wrapper">
+    <h2 class="product-title">Candidate Board</h2>
+    <ol class="breadcrumb">
+    <li><a href="#"><i class="ti-home"></i> Home</a></li>
+    <li><a href="/candidate" routerLink="/candidate">Candidate</a></li>
+    <li class="current">Edit CV</li>
+    </ol>
+    </div>
+    
+    </div>
+    </div>
+    </div>
+  </div>
+  
+  <div id="content">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-12">
+    <div class="right-sideabr">
+    <div class="inner-box">
+    <ul class="lest">
+    <li><a href="/candidate" routerLink="/candidate">My CV</a></li>
+    <li *ngIf="userdata.isActive"><a class="active">Edit CV</a></li>
+    <li><a href="/candidate/change-password" routerLink="/candidate/change-password">Change Password</a></li>
+    </ul>
+    <ul class="lest item">
+    <li><a href="/candidate/applications" routerLink="/candidate/applications">My Applications</a></li>
+    </ul>
+    <ul class="lest">
+    <li><a href (click)="logout()">Logout</a></li>
+    </ul>
+    </div>
+    </div>
+    </div>
+
+    <div class="col-md-8 col-sm-8 col-xs-12">
+        <div class="job-alerts-item">
+        <h3 class="alerts-title">Edit CV</h3>
+        
+    <div class="page-ads box">
+        <form class="form-ad" [formGroup]="cvForm" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="divider"><h3><i class="ti-user"></i>  Basic information</h3></div>
+        
+        <div class="form-group">
+        <label class="control-label" for="textarea">Address</label>
+         <input type="text" class="form-control" formControlName="address" value="{{userdata.address}}">
+        </div>
+
+        <div class="form-group">
+        <label class="control-label" for="textarea">Age</label>
+        <input type="text" class="form-control" formControlName="age" value="{{userdata.age}}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="textarea">Phone Number</label>
+            <input type="text" class="form-control" formControlName="phoneNumber" value="{{userdata.phoneNumber}}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="textarea">Bio</label>
+            <textarea class="form-control" rows="5" formControlName="bio" >{{userdata.bio}}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="textarea">Upload a profile photo</label>
+            <input id="cover_img_file" type="file">
+        </div>
+
+        
+        <div class="divider">
+        <h3><i class="ti-book"></i>  Education</h3>
+        </div>
+        
+        <div formArrayName="educations">
+            <div *ngFor="let item of myEducations.controls; let educationIndex=index" [formGroupName]="educationIndex">
+                <div class="form-group">
+                    <label class="control-label" for="textarea">Degree</label>
+                    <input type="text" class="form-control" value="{{item.degree}}" formControlName="degree">
+                    </div>
+            
+                    <div class="form-group">
+                    <label class="control-label" for="textarea">School</label>
+                    <input type="text" class="form-control" value="{{item.school}}" formControlName="school">
+                    </div>
+            
+                    <div class="form-group">
+                    <div class="row">
+                    <div class="col-md-6">
+                    <label class="control-label" for="textarea">From</label>
+                    <input type="text" class="form-control" value="{{item.startDate}}" formControlName="startDate">
+                    </div>
+                    <div class="col-md-6">
+                    <label class="control-label" for="textarea">To</label>
+                    <input type="text" class="form-control" value="{{item.endDate}}" formControlName="endDate">
+                    </div>
+                    </div>
+                    </div>
+            
+                    <div class="add-post-btn">
+                    <div class="pull-right">
+                        <button type="button" (click)="deleteEducation(educationIndex)"><i class="ti-plus"></i> Delete this</button>
+                    </div>
+                    </div>
+            </div>
+
+            <div class="add-post-btn">
+                <div class="pull-left">
+                    <button type="button" (click)="addEducation()"><i class="ti-plus"></i> Add New Education</button>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="divider">
+            <h3><i class="ti-briefcase"></i>  Work Experience</h3>
+        </div>
+
+        <div formArrayName="experiences">
+            <div *ngFor="let item of myExperiences.controls; let experienceIndex=index" [formGroupName]="experienceIndex">
+                <div class="form-group">
+                    <label class="control-label" for="textarea">Company Name</label>
+                    <input type="text" class="form-control" value="{{item.company}}" formControlName="company"> 
+                    </div>
+                    
+                    <div class="form-group">
+                    <label class="control-label" for="textarea">Title</label>
+                    <input type="text" class="form-control" value="{{item.title}}" formControlName="title">
+                    </div>
+            
+                    <div class="form-group">
+                    <div class="row">
+                    <div class="col-md-6">
+                    <label class="control-label" for="textarea">Date From</label>
+                    <input type="text" class="form-control" value="{{item.startDate}}" formControlName="startDate">
+                    </div>
+                    <div class="col-md-6">
+                    <label class="control-label" for="textarea">Date To</label>
+                    <input type="text" class="form-control" value="{{item.endDate}}" formControlName="endDate">
+                    </div>
+                    </div>
+                    </div>
+            
+                    <div class="form-group">
+                        <label class="control-label" for="textarea">Description</label>
+                        <textarea class="form-control" rows="7" formControlName="description">{{item.description}}"</textarea>
+                    </div>
+
+                    <div class="add-post-btn">
+                        <div class="pull-right">
+                            <button type="button" (click)="deleteExperience(experienceIndex)"><i class="ti-plus"></i> Delete this</button>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="add-post-btn">
+                    <div class="pull-left">
+                        <button type="button" (click)="addExperience()"><i class="ti-plus"></i> Add New Experience</button>
+                    </div>
+                </div>
+            
+        </div>
+
+        <div class="divider">
+            <h3><i class="ti-star"></i>  Skills and Languages</h3>
+        </div>
+
+        <div formArrayName="skills">
+            <div *ngFor="let item of mySkills.controls; let skillIndex=index" [formGroupName]="skillIndex">
+
+        <div class="form-group">
+        <div class="row">
+        <div class="col-md-6">
+        <label class="control-label" for="textarea">Skill</label>
+        <input class="form-control" type="text" formControlName="name">
+        </div>
+        <div class="col-md-6">
+        <label class="control-label" for="textarea">% (1-100)</label>
+        <input class="form-control" type="text" formControlName="value">
+        </div>
+        </div>
+        </div>
+
+        <div class="add-post-btn">
+            <div class="pull-right">
+                <button type="button" (click)="deleteSkill(skillIndex)"><i class="ti-plus"></i> Delete this</button>
+            </div>
+        </div>
+        
+        </div>
+
+        <div class="add-post-btn">
+            <div class="pull-left">
+                <button type="button" (click)="addSkill()"><i class="ti-plus"></i> Add New Skill</button>
+            </div>
+        </div>
+
+        </div>
+
+        <div formArrayName="languages">
+            <div *ngFor="let language of myLanguages.controls; let languageIndex=index">
+                <div class="form-group">
+                    <label class="control-label" for="textarea">Language</label>
+                    <input type="text" class="form-control" value="{{language}}" formControlName="{{ languageIndex }}">
+                </div>
+
+                <div class="add-post-btn">
+                    <div class="pull-right">
+                        <button type="button" (click)="deleteLanguage(languageIndex)"><i class="ti-plus"></i> Delete this</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="add-post-btn">
+                <div class="pull-left">
+                    <button type="button" (click)="addLanguage()"><i class="ti-plus"></i> Add New Language</button>
+                </div>
+            </div>
+        </div>
+  
+
+        <div class="divider">
+            <h3><i class="ti-heart"></i>  Hobbies & Interests</h3>
+        </div>
+
+        <div formArrayName="hobbies">
+            <div *ngFor="let hobbie of myHobbies.controls; let hobbieIndex=index">
+                <div class="form-group">
+                    <label class="control-label" for="textarea">Hobbie</label>
+                    <input type="text" class="form-control" value="{{hobbie}}" formControlName="{{ hobbieIndex }}">
+                </div>
+
+                <div class="add-post-btn">
+                    <div class="pull-right">
+                        <button type="button" (click)="deleteHobbie(hobbieIndex)"><i class="ti-plus"></i> Delete this</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="add-post-btn">
+                <div class="pull-left">
+                    <button type="button" (click)="addHobbie()"><i class="ti-plus"></i> Add New Hobbie</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider">
+            <h3><i class="ti-link"></i> Social links</h3>
+        </div>
+
+        <div formArrayName="socialLinks">
+            <div *ngFor="let item of myLinks.controls; let linksIndex=index" [formGroupName]="linksIndex">
+
+        <div class="form-group">
+        <div class="row">
+        <div class="col-md-4">
+        <label class="control-label" for="textarea">Facebook</label>
+        <input class="form-control" placeholder="Facebook link" type="text" formControlName="facebook">
+        </div>
+        <div class="col-md-4">
+        <label class="control-label" for="textarea">LinkedIn</label>
+        <input class="form-control" placeholder="LinkedIn link" type="text" formControlName="linkedin">
+        </div>
+        <div class="col-md-4">
+            <label class="control-label" for="textarea">Github</label>
+            <input class="form-control" placeholder="Github link" type="text" formControlName="github">
+        </div>
+        </div>
+        </div>
+
+            </div>
+        </div>
+
+        <button class="btn btn-common log-btn">Save Change</button>
+        <br><br>
+        <div class="form-group">
+            <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isCvFailed">
+              Edit CV failed! {{ errorMessage }}
+            </div>
+            <div class="alert alert-success" *ngIf="isSuccessful">
+                CV edited successfully.
+              </div>
+        </div>
+
+        </form>
+        
+        </div>
+
+    </div>
+    </div>
+
+    </div>
+    </div>
+    </div>
+  
+

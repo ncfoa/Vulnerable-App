@@ -1,0 +1,88 @@
+
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+        <div class="breadcrumb-wrapper">
+        <h2 class="product-title">Admin Login</h2>
+        <ol class="breadcrumb">
+        <li><a href="#"><i class="ti-home"></i> Home</a></li>
+        <li class="current">Admin / Login</li>
+        </ol>
+        <div class="alert alert-success col-xs-4 col-xs-offset-4 mx-auto" *ngIf="isAdminLoggedIn">
+          <h4>Logged in successfully.</h4>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="content" class="my-account">
+    <div class="container" *ngIf="!isAdminLoggedIn">
+      <div class="row">
+  
+        <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-8 cd-user-modal">
+          <div class="my-account-form">
+          
+      
+        <div id="cd-login" class="is-selected">
+        <div class="page-login-form">
+        <form class="login-form" *ngIf="!isAdminLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        
+        <div class="form-group">
+          <div class="input-icon">
+          <i class="ti-email"></i>
+          <input id="sender-email" class="form-control" name="email" placeholder="Email" type="email" [(ngModel)]="form.email" required #email="ngModel">
+          </div>
+          <div class="alert-danger" *ngIf="f.submitted && email.invalid">
+            <div *ngIf="email.errors.required">Email is required</div>
+            <div *ngIf="email.errors.email">
+              Email must be a valid email address
+            </div>
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <div class="input-icon">
+          <i class="ti-lock"></i>
+          <input type="password" placeholder="Password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel"/>
+          <div class="alert alert-danger" role="alert" *ngIf="f.submitted && password.invalid">
+            <div *ngIf="password.errors.required">Password is required</div>
+            <div *ngIf="password.errors.minlength">
+                  Password must be at least 6 characters
+            </div>
+          </div>
+        </div>
+        </div>
+    
+        <button class="btn btn-common log-btn">Login</button>
+        <div class="form-group">
+          <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
+            Login failed: {{ errorMessage }}
+          </div>
+          <div class="alert alert-success" *ngIf="isAdminLoggedIn">
+            Logged in successfully!
+          </div>
+        </div>
+    
+      </form>
+
+        </div>
+        </div>
+          
+        </div>
+        </div>
+        
+      
+      </div>
+    </div>
+  </div>
+  
+  <!--
+    
+  
+      
+  
+  -->
+  

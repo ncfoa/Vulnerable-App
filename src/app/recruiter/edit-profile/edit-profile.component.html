@@ -1,0 +1,109 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="breadcrumb-wrapper">
+    <h2 class="product-title">Recruiter Board</h2>
+    <ol class="breadcrumb">
+    <li><a href="#"><i class="ti-home"></i> Home</a></li>
+    <li><a href="/recruiter" routerLink="/recruiter">Recruiter</a></li>
+    <li class="current">Edit profile</li>
+    </ol>
+    </div>
+    
+    </div>
+    </div>
+    </div>
+  </div>
+  
+  <div id="content">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-12">
+    <div class="right-sideabr">
+    <div class="inner-box">
+    <ul class="lest">
+    <li><a href="/recruiter" routerLink="/recruiter">My Profile</a></li>
+    <li><a class="active">Edit Profile</a></li>
+    <li><a href="/recruiter/change-password" routerLink="/recruiter/change-password">Change Password</a></li>
+    </ul>
+    <ul class="lest item">
+    <li><a href="/recruiter/offers" routerLink="/recruiter/offers">Manage offers</a></li>
+    <li><a href="/recruiter/post-offer" routerLink="/recruiter/post-offer">Post an offer</a></li>
+    </ul>
+    <ul class="lest">
+    <li><a href (click)="logout()">Logout</a></li>
+    </ul>
+    </div>
+    </div>
+    </div>
+
+    
+    <div class="col-md-8 col-sm-8 col-xs-12">
+        <div class="job-alerts-item">
+        <h3 class="alerts-title">Edit Profile</h3>
+        
+    <div class="page-ads box">
+        <form class="form-ad" [formGroup]="profileForm" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        <div class="divider"><h3><i class="ti-user"></i>  Basic information</h3></div>
+        
+        <div class="form-group">
+        <label class="control-label" for="textarea">Address</label>
+         <input type="text" class="form-control" formControlName="address" value="{{userdata.address}}">
+        </div>
+
+        <div class="form-group">
+        <label class="control-label" for="textarea">City</label>
+        <input type="text" class="form-control" formControlName="city" value="{{userdata.city}}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="textarea">Province</label>
+            <input type="text" class="form-control" formControlName="province" value="{{userdata.province}}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="textarea">Country</label>
+            <input type="text" class="form-control" formControlName="country" value="{{userdata.country}}">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="textarea">Description</label>
+            <textarea class="form-control" rows="5" formControlName="description" >{{userdata.description}}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="textarea">Upload a logo</label>
+            <input id="cover_img_file" type="file">
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="textarea">Website</label>
+             <input type="text" class="form-control" formControlName="website" value="{{userdata.website}}">
+        </div>
+
+        <button class="btn btn-common log-btn">Save Change</button>
+        <br><br>
+        <div class="form-group">
+            <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isProfileFailed">
+              Edit Profile failed! {{ errorMessage }}
+            </div>
+            <div class="alert alert-success" *ngIf="isSuccessful">
+                Profile edited successfully.
+              </div>
+        </div>
+
+        </form>
+        
+        </div>
+
+    </div>
+    </div>
+
+    </div>
+    </div>
+    </div>
+  
+
+
+

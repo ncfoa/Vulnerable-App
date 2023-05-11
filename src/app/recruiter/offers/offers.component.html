@@ -1,0 +1,262 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="breadcrumb-wrapper">
+    <h2 class="product-title">Recruiter Board</h2>
+    <ol class="breadcrumb">
+    <li><a href="#"><i class="ti-home"></i> Home</a></li>
+    <li><a href="/recruiter" routerLink="/recruiter">Recruiter</a></li>
+    <li class="current">Manage offers</li>
+    </ol>
+  
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+  
+  
+  <div id="content">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-12">
+    <div class="right-sideabr">
+    
+    <div class="inner-box">
+    <ul class="lest">
+    <li><a href="/recruiter" routerLink="/recruiter" >My Profile</a></li>
+    <li><a href="/recruiter/edit-profile" routerLink="/recruiter/edit-profile">Edit Profile</a></li>
+    <li><a href="/recruiter/change-password" routerLink="/recruiter/change-password">Change Password</a></li>
+    </ul>
+    <ul class="lest item">
+    <li><a class="active">Manage offers</a></li>
+    <li><a href="/recruiter/post-offer" routerLink="/recruiter/post-offer">Post an offer</a></li>
+    </ul>
+    <ul class="lest">
+    <li><a href (click)="logout()">Logout</a></li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  
+  
+    <div class="col-md-8 col-sm-8 col-xs-12">
+        <div class="job-alerts-item">
+        <h3 class="alerts-title">Manage offers</h3>
+        
+
+   
+        <div class="table-responsive row">
+            <table *ngIf="offers" class="table table-bordered table-hover" id="offers-table">
+                <thead class="thead-default thead-lg">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let offer of offers; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{offer.title}}</td>
+                        <td>{{offer.type}}</td>
+                        <td>{{offer.location}}</td>
+                        <td>
+                            <span class="badge alert-success badge-pill" *ngIf="offer.isApproved">Approved</span>
+                            <span class="badge alert-warning badge-pill" *ngIf="!offer.isApproved">Pending</span>
+                        </td>
+                        <td>
+                           <!--  <a class="actions" href="#editOfferModal{{offer._id}}" data-toggle="modal" data-target="editOfferModal{{offer._id}}"><i class="ti-pencil"></i></a> -->
+                            <a class="actions" href="#deleteOfferModal{{offer._id}}" data-toggle="modal" data-target="deleteOfferModal{{offer._id}}"><i class="ti-trash"></i></a>
+                            <a class="actions" [routerLink]="['/recruiter/offers', offer._id]"><i class="ti-layers"></i></a>
+                        </td>
+                        
+                        <!-- Edit offer Modal -->
+                    <!--
+                    <div class="modal fade" id="editOfferModal{{offer._id}}" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" >
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h1>Edit offer</h1>
+                            </div>
+                            <div class="modal-body">
+                                <div class="page-ads box">
+                                <form class="form-ad" [formGroup]="offerForm" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                                    
+                                    <div class="form-group">
+                                    <label class="control-label" for="textarea">Title</label>
+                                     <input type="text" class="form-control" formControlName="title" [ngModel]="offer.title" value="offer.title" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                        <div class="col-md-6">
+                                        <label class="control-label" for="textarea">Type</label>
+                                        <div class="search-category-container">
+                                            <select class="form-control" formControlName="type" [ngModel]="offer.type">
+                                                <option value="Summer internship">Summer internship</option>
+                                                <option value="End of studies internship">End of studies internship</option>
+                                            </select>
+                                        </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                        <label class="control-label" for="textarea">Category</label>
+                                        <div class="search-category-container">
+                                        <select class="form-control" formControlName="category" [ngModel]="offer.category">
+                                            <option value="Information Technology">Information Technology</option>
+                                             <option value="Finance & Banking">Finance & Banking</option>
+                                            <option value="Sales & Marketing">Sales & Marketing</option>
+                                            <option value="Healthcare & Fitness">Healthcare & Fitness</option>
+                                            <option value="Art & Design">Art & Design</option>
+                                            
+                                        </select>
+                                        </div>
+                                        </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                        <div class="col-md-6">
+                                        <label class="control-label" for="textarea">Start date</label>
+                                        <input type="date" class="form-control" formControlName="startDate" [ngModel]="offer.startDate" required>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                        <label class="control-label" for="textarea">End date</label>
+                                        <input type="date" class="form-control" formControlName="endDate" [ngModel]="offer.endDate" required>
+                                        </div>
+                                        
+                                        </div>
+                                    </div>
+   
+                                    <div class="form-group">
+                                        <label class="control-label" for="textarea">Location</label>
+                                         <input type="text" class="form-control" formControlName="location" [ngModel]="offer.location" value="offer.location" required>
+                                    </div>
+                            
+                                    <div class="form-group">
+                                        <label class="control-label" for="textarea">Description</label>
+                                        <textarea class="form-control" rows="5" formControlName="description" [ngModel]="offer.description" required>{{offer.description}}"</textarea>
+                                    </div>
+                            
+                                    <div class="divider">
+                                        <h3>Keywords</h3>
+                                    </div>
+                            
+                                    <div formArrayName="keywords">
+                                        <div *ngFor="let keyword of myKeywords.controls; let keywordIndex=index">
+                                            <div class="form-group">
+                                                <label class="control-label" for="textarea">Keyword</label>
+                                                <input type="text" class="form-control" value="{{keyword}}" formControlName="{{ keywordIndex }}" [ngModel]="offer.keyword"required>
+                                            </div>
+                            
+                                            <div class="add-post-btn">
+                                                <div class="pull-right">
+                                                    <button type="button" (click)="deleteKeyword(keywordIndex)"><i class="ti-plus"></i> Delete this</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                            
+                                        <div class="add-post-btn">
+                                            <div class="pull-left">
+                                                <button type="button" (click)="addKeyword()"><i class="ti-plus"></i> Add New Keyword</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="modal-footer">
+                                    <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-common log-btn">Edit offer</button>
+                                    <br><br>
+                                    <div class="form-group">
+                                        <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isOfferFailed">
+                                          Edit offer failed! {{ errorMessage }}
+                                        </div>
+                                        <div class="alert alert-success" *ngIf="isSuccessful">
+                                            Offer edited successfully.
+                                          </div>
+                                    </div>
+                                    </div>
+                                    
+                            
+                                    </form>
+
+                                    </div>
+                                
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                -->
+                    <!-- End of edit offer modal -->
+
+                    <!-- Delete offer Modal -->
+                    
+                    <div class="modal fade" id="deleteOfferModal{{offer._id}}" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered" >
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h1>Delete offer</h1>
+                            </div>
+                            <div class="modal-body">
+                                <div class="page-ads box">
+                                <form class="form-ad" [formGroup]="deleteOfferForm" name="form" (ngSubmit)="deleteform.form.valid && delete(offer._id)" #deleteform="ngForm" novalidate>
+                                    
+                                    <div class="form-group">
+                                         <input type="hidden" class="form-control" formControlName="_id">
+                                    </div>
+                                    
+                                    <p>Are you sure you want to delete the offer?</p>
+						            <p class="text-danger"><small>This action cannot be undone.</small></p>                                  
+                                    
+                                    <div class="modal-footer">
+                                    <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-common log-btn">Delete offer</button>
+                                    <br><br>
+
+                                    <div class="form-group">
+                                        <div class="alert alert-danger" role="alert" *ngIf="deleteform.submitted && isOfferFailed">
+                                          Delete offer failed! {{ errorMessage }}
+                                        </div>
+                                        <div class="alert alert-success" *ngIf="isSuccessful">
+                                            Offer deleted successfully.
+                                          </div>
+                                    </div>
+                                    </div>
+                                    
+                            
+                                    </form>
+
+                                    </div>
+                                
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- End of delete offer modal -->
+                    
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+        
+  
+  
+  

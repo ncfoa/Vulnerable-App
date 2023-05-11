@@ -1,0 +1,189 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="breadcrumb-wrapper">
+    <h2 class="product-title">Recruiter Board</h2>
+    <ol class="breadcrumb">
+    <li><a href="#"><i class="ti-home"></i> Home</a></li>
+    <li><a href="/recruiter" routerLink="/recruiter">Recruiter</a></li>
+    <li><a href="/recruiter/offers" routerLink="/recruiter/offers">Manage offers</a></li>
+    <li class="current">Applications</li>
+    </ol>
+  
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+  
+  
+  <div id="content">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-12">
+    <div class="right-sideabr">
+    
+    <div class="inner-box">
+    <ul class="lest">
+    <li><a href="/recruiter" routerLink="/recruiter" >My Profile</a></li>
+    <li><a href="/recruiter/edit-profile" routerLink="/recruiter/edit-profile">Edit Profile</a></li>
+    <li><a href="/recruiter/change-password" routerLink="/recruiter/change-password">Change Password</a></li>
+    </ul>
+    <ul class="lest item">
+    <li><a href="/recruiter/offers" routerLink="/recruiter/offers">Manage offers</a></li>
+    <div class="clearfix">
+            <li><a class="active">Applications</a></li>
+    </div>
+    <li><a href="/recruiter/post-offer" routerLink="/recruiter/post-offer">Post an offer</a></li>
+    </ul>
+    <ul class="lest">
+    <li><a href (click)="logout()">Logout</a></li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  
+  
+    <div class="col-md-8 col-sm-8 col-xs-12">
+        <div class="job-alerts-item">
+        <h3 class="alerts-title">Applications</h3>
+        
+
+   
+        <div class="table-responsive row">
+            <table *ngIf="applications" class="table table-bordered table-hover" id="applications-table">
+                <thead class="thead-default thead-lg">
+                    <tr>
+                        <th>Offer title</th>
+                        <th>Candidate</th>
+                        <th>Apply date</th>
+                        <th>Test score</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let application of applications">
+                        <td>{{application.offer.title}}</td>
+                        <td><a [routerLink]="['/profile', application.candidate._id]">Profile</a></td>
+                        <td>{{application.applyDate}}</td>
+                        <td>{{application.test.score}}</td>
+                        <td>
+                            <span class="badge alert-success badge-pill" *ngIf="application.status == Approved">Approved</span>
+                            <span class="badge alert-warning badge-pill" *ngIf="application.status == Pending">Pending</span>
+                            <span class="badge alert-danger badge-pill" *ngIf="application.status == Rejected">Rejected</span>
+                        </td>
+                        <td>
+                            <a class="actions" *ngIf="application.status == Pending" href="#approveModal{{application._id}}" data-toggle="modal" data-target="approveModal{{application._id}}"><i class="ti-check-box"></i></a>
+                            <a class="actions" *ngIf="application.status == Pending" href="#rejectModal{{application._id}}" data-toggle="modal" data-target="rejectModal{{application._id}}"><i class="ti-na"></i></a> -->
+                        </td>
+
+                    <!-- Approve Modal -->
+                    
+                    <div class="modal fade" id="approveModal{{application._id}}" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered" >
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h1>Approve application</h1>
+                            </div>
+                            <div class="modal-body">
+                                <div class="page-ads box">
+                                <form class="form-ad" [formGroup]="approveForm" name="form" (ngSubmit)="approve.form.valid && approve(application._id)" #approveform="ngForm" novalidate>
+                                    
+                                    <div class="form-group">
+                                         <input type="hidden" class="form-control" formControlName="_id">
+                                    </div>
+                                    
+                                    <p>Are you sure you want to approve the application?</p>
+						            <p class="text-danger"><small>This action cannot be undone.</small></p>                                  
+                                    
+                                    <div class="modal-footer">
+                                    <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-common log-btn">Approve application</button>
+                                    <br><br>
+
+                                    <div class="form-group">
+                                        <div class="alert alert-danger" role="alert" *ngIf="approveform.submitted && isApplicationFailed">
+                                          Approve application failed! {{ errorMessage }}
+                                        </div>
+                                        <div class="alert alert-success" *ngIf="isSuccessful">
+                                            Application approved successfully.
+                                          </div>
+                                    </div>
+                                    </div>
+                                    
+                            
+                                    </form>
+
+                                    </div>
+                                
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- End of approve modal -->
+
+                    <!-- Reject Modal -->
+
+                    <div class="modal fade" id="rejectModal{{application._id}}" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered" >
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h1>Reject application</h1>
+                            </div>
+                            <div class="modal-body">
+                                <div class="page-ads box">
+                                <form class="form-ad" [formGroup]="rejectForm" name="form" (ngSubmit)="reject.form.valid && reject(application._id)" #rejectform="ngForm" novalidate>
+                                    
+                                    <div class="form-group">
+                                            <input type="hidden" class="form-control" formControlName="_id">
+                                    </div>
+                                    
+                                    <p>Are you sure you want to reject the application?</p>
+                                    <p class="text-danger"><small>This action cannot be undone.</small></p>                                  
+                                    
+                                    <div class="modal-footer">
+                                    <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-common log-btn">Reject application</button>
+                                    <br><br>
+
+                                    <div class="form-group">
+                                        <div class="alert alert-danger" role="alert" *ngIf="rejectform.submitted && isApplicationFailed">
+                                            Reject application failed! {{ errorMessage }}
+                                        </div>
+                                        <div class="alert alert-success" *ngIf="isSuccessful">
+                                            Application rejected successfully.
+                                            </div>
+                                    </div>
+                                    </div>
+                                    
+                            
+                                    </form>
+
+                                    </div>
+                                
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- End of reject modal -->
+                    
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+        
+  
+  
+  

@@ -1,0 +1,129 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+  <div class="container">
+  <div class="row">
+  <div class="col-md-12">
+  <div class="breadcrumb-wrapper">
+  <h2 class="product-title">Profile</h2>
+  <ol class="breadcrumb">
+  <li><a href="#"><i class="ti-home"></i> Home</a></li>
+  <li class="current"> Profile</li>
+  </ol>
+  <div class="alert alert-warning col-md-4 col-md-offset-4" *ngIf="!profile">
+    <h3>Profile not found</h3>
+  </div>
+  </div>
+
+  
+  
+  </div>
+  </div>
+  </div>
+</div>
+
+
+
+
+<div id="content" *ngIf="profile && profile.isActive">
+  <div class="container">
+  <div class="row">
+
+<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12">
+  <div class="inner-box my-resume">
+  <div class="author-resume">
+  <div class="thumb">
+  <img src="assets/img/resume/profile_photo.png" alt="Profile photo">
+  </div>
+  <div class="author-info">
+    <span class="address">
+      <h3> {{profile.firstName}} {{profile.lastName}}</h3>
+    </span>
+   <p>
+    <span class="address" *ngIf="profile.age">
+      <i class="ti-id-badge"></i> {{profile.age}} years old
+    </span>
+    <br>
+    <span class="address" *ngIf="profile.email">
+      <i class="ti-email"></i> Email : {{profile.email}}
+    </span>
+   </p>
+  <p>
+    <span class="address" *ngIf="profile.address">
+      <i class="ti-location-pin"></i> Address : {{profile.address}}
+    </span>
+    <br> 
+    <span *ngIf="profile.phoneNumber">
+      <i class="ti-mobile"></i> Phone number : {{profile.phoneNumber}}
+    </span>
+  </p>
+  <div class="social-link" *ngIf="profile.socialLinks.length > 0">
+  <a *ngIf="profile.socialLinks[0].facebook" class="facebook" target="_blank" data-original-title="facebook" href="{{profile.socialLinks[0].facebook}}" data-toggle="tooltip" data-placement="top"><i class="fa fa-facebook"></i></a>
+  <a *ngIf="profile.socialLinks[0].linkedin" class="linkedin" target="_blank" data-original-title="linkedin" href="{{profile.socialLinks[0].linkedin}}" data-toggle="tooltip" data-placement="top"><i class="fa fa-linkedin"></i></a>
+  <a *ngIf="profile.socialLinks[0].github" class="github" target="_blank" data-original-title="github" href="{{profile.socialLinks[0].github}}" data-toggle="tooltip" data-placement="top"><i class="fa fa-github"></i></a>
+  </div>
+  </div>
+  </div>
+
+  <br><br>
+
+  <div *ngIf="profile.bio" class="about-me item">
+  <h3><i class="ti-user"></i> About Me</h3>
+  <p>{{profile.bio}}</p>
+  </div>
+
+  <div *ngIf="profile.experiences.length > 0" class="work-experence item">
+  <h3><i class="ti-briefcase"></i> Work Experience</h3>
+
+  <span *ngFor="let work of profile.experiences">
+    <h4>{{work.title}}</h4>
+    <h5>{{work.company}}</h5>
+    <p>{{work.startDate}} - {{work.endDate}}</p>
+    <p>{{work.description}}</p>
+  <br>
+  </span>
+  
+  </div>
+  
+  <div *ngIf="profile.educations.length > 0" class="education item">
+  <h3><i class="ti-book"></i> Education</h3>
+
+  <span *ngFor="let education of profile.educations">
+  <h4>{{education.degree}}</h4>
+  <h5>{{education.school}}</h5>
+  <p>{{education.startDate}} - {{education.endDate}}</p>
+ 
+  <br>
+  </span>
+  </div>
+
+  <div *ngIf="profile.skills.length > 0" class="item">
+    <h3><i class="ti-star"></i> Skills</h3>
+  
+    <span *ngFor="let skill of profile.skills">
+    <h4>{{skill.name}} <mat-progress-bar mode="determinate" color="warn" value="{{skill.value}}"></mat-progress-bar></h4>
+    </span>
+
+  </div>
+
+  <div *ngIf="profile.languages.length > 0" class="item">
+    <h3><i class="ti-tag"></i> Languages</h3>
+  
+    <span *ngFor="let language of profile.languages">
+    <p>{{language}}</p>
+    </span>
+  </div>
+
+  <div *ngIf="profile.hobbies.length > 0" class="item">
+    <h3><i class="ti-heart"></i> Hobbies</h3>
+  
+    <span *ngFor="let hobbie of profile.hobbies">
+    <p>{{hobbie}}</p>
+    </span>
+  </div>
+
+  </div>
+  </div>
+  
+</div>
+</div>
+
+</div>

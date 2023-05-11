@@ -1,0 +1,369 @@
+<div class="header">
+
+  <section id="intro" class="section-intro">
+  
+  <div class="search-container">
+  <div class="container">
+  <div class="row">
+  <div class="col-md-12">
+  <h1>Find an internship that matches your skills</h1><br><h2>More than <strong>1000</strong> opportunities are waiting to kickstart your career!</h2>
+  <div class="content">
+  <form method="" action="#">
+  <div class="row">
+  <div class="col-md-4 col-sm-6">
+  <div class="form-group">
+  <input class="form-control" type="text" placeholder="internship title / keywords / company name">
+  <i class="ti-time"></i>
+  </div>
+  </div>
+  <div class="col-md-4 col-sm-6">
+  <div class="form-group">
+  <input class="form-control" type="email" placeholder="city / province / zip code">
+  <i class="ti-location-pin"></i>
+  </div>
+  </div>
+  <div class="col-md-3 col-sm-6">
+  <div class="search-category-container">
+  <label class="styled-select">
+  <select class="dropdown-product selectpicker">
+  <option>Information Technology</option>
+  <!--
+  <option>Finance</option>
+  <option>IT & Engineering</option>
+  <option>Education/Training</option>
+  <option>Art/Design</option>
+  <option>Sale/Markting</option>
+  <option>Healthcare</option>
+  <option>Science</option>
+  <option>Food Services</option>
+  -->
+  </select>
+  </label>
+  </div>
+  </div>
+  <div class="col-md-1 col-sm-6">
+  <button type="button" class="btn btn-search-icon"><i class="ti-search"></i></button>
+  </div>
+  </div>
+  </form>
+  </div>
+  <div class="popular-jobs">
+  <b>Popular Keywords: </b>
+  <a>Angular</a>
+  <a>Java</a>
+  <a>C++</a>
+  <a>Python</a>
+  <a>DevOps</a>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </section>
+  
+  </div>
+    
+  <section class="find-job section">
+  <div class="container">
+  <h1 class="section-title">Recent Internships</h1>
+
+  <div class="row">
+  <div class="col-md-12">
+
+  <div class="job-list" *ngFor="let offer of offers | paginate: { itemsPerPage: 6, currentPage: page }">
+  <div class="thumb">
+  <a><img src="assets/img/logo.png" alt="company-logo"></a>
+  </div>
+  <div class="job-list-content">
+  <h4><a [routerLink]="['/internship', offer._id]">{{offer.title}}</a><span class="full-time">{{offer.type}}</span></h4>
+  <p>{{offer.description}}</p>
+  <div class="job-tag">
+  <div class="pull-left">
+  <div class="meta-tag">
+  <span><a><i class="ti-desktop"></i>{{offer.category}}</a></span>
+  <span><i class="ti-location-pin"></i>{{offer.location}}</span>
+  <span><i class="fa fa-calendar"></i>{{offer.createdDate}}</span>
+  </div>
+  </div>
+  <div class="pull-right">
+  <a [routerLink]="['/internship', offer._id]" class="btn btn-common btn-rm">Internship details</a>
+  </div>
+  </div>
+  </div>
+  </div>
+
+  
+  </div>
+  <div class="col-md-12">
+  
+    <ul class="pagination pull-right">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </ul>
+  <!-- 
+  <ul class="pagination pull-right">
+  <li class="active"><a href="#" class="btn btn-common"><i class="ti-angle-left"></i> prev</a></li>
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#">4</a></li>
+  <li><a href="#">5</a></li>
+  <li class="active"><a href="#" class="btn btn-common">Next <i class="ti-angle-right"></i></a></li>
+  </ul>
+  -->
+  </div>
+
+  </div>
+  </div>
+  </section>
+  
+  <!--
+
+  <section class="category section">
+  <div class="container">
+  <h2 class="section-title">Browse Categories</h2>
+  <div class="row">
+  <div class="col-md-12">
+  <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+  <a href="browse-jobs.html">
+  <div class="icon">
+  <i class="ti-home"></i>
+  </div>
+  <h3>Finance</h3>
+  <p>4286 jobs</p>
+  </a>
+  </div>
+  <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+  <a href="browse-jobs.html">
+  <div class="icon">
+  <i class="ti-world"></i>
+  </div>
+  <h3>Sale/Markting</h3>
+  <p>2000 jobs</p>
+  </a>
+  </div>
+  <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+  <a href="browse-jobs.html">
+   <div class="icon">
+  <i class="ti-book"></i>
+  </div>
+  <h3>Education/Training</h3>
+  <p>1450 jobs</p>
+  </a>
+  </div>
+  <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+  <a href="browse-jobs.html">
+  <div class="icon">
+  <i class="ti-desktop"></i>
+  </div>
+  <h3>Technologies</h3>
+  <p>5100 jobs</p>
+  </a>
+  </div>
+  <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+  <a href="browse-jobs.html">
+  <div class="icon">
+  <i class="ti-brush"></i>
+  </div>
+  <h3>Art/Design</h3>
+  <p>5079 jobs</p>
+  </a>
+  </div>
+  <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+  <a href="browse-jobs.html">
+  <div class="icon">
+  <i class="ti-heart"></i>
+  </div>
+  <h3>Healthcare</h3>
+  <p>3235 jobs</p>
+  </a>
+  </div>
+  <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+  <a href="browse-jobs.html">
+  <div class="icon">
+  <i class="ti-filter"></i>
+  </div>
+  <h3>Science</h3>
+  <p>1800 jobs</p>
+  </a>
+  </div>
+  <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+  <a href="browse-jobs.html">
+  <div class="icon">
+  <i class="ti-cup"></i>
+  </div>
+  <h3>Food Services</h3>
+  <p>4286 jobs</p>
+  </a>
+  </div>
+  </div>
+  </div>
+  </div>
+  </section>
+
+   -->
+
+   <section class="section purchase" data-stellar-background-ratio="0.5">
+    <div class="container">
+    <div class="row">
+    <div class="section-content text-center">
+    <h1 class="title-text">
+    Looking for an internship ?
+    </h1>
+    <p>Join thousand of recruiters and earn what you deserve!</p>
+    <a href="/candidate/register" routerLink="/candidate/register" class="btn btn-common">Register Now</a>
+    </div>
+    </div>
+    </div>
+    </section>
+  
+    <section id="service-main" class="section">
+
+      <div class="container">
+      <h1 class="section-title">How does it work ?</h1>
+      <div class="row">
+      <div class="col-sm-6 col-md-4">
+      <div class="service-item">
+      <div class="icon-wrapper">
+      <i class="ti-search">
+      </i>
+      </div>
+      <h2>
+      Search for offers
+      </h2>
+      <p>
+      Depending on your technical skills and your profile, search for available offers and find the suitable internship that you deserve. 
+      </p>
+      </div>
+      
+      </div>
+      <div class="col-sm-6 col-md-4">
+      
+      <div class="service-item">
+      <div class="icon-wrapper">
+      <i class="ti-write">
+      </i>
+      </div>
+      <h2>
+      Apply for internship
+      </h2>
+      <p>
+      Submit your application by passing a test to prove your technical capabilities and to impress the recruiter with a high test score.
+      </p>
+      </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+      <div class="service-item">
+      <div class="icon-wrapper">
+      <i class="ti-heart">
+      </i>
+      </div>
+      <h2>
+      Get in touch 
+      </h2>
+      <p>
+      Once you get accepted, you'll get in touch with the recruiter to set up and start your internship. Good luck!
+      </p>
+      </div>
+      </div>
+      </div>
+      </div>
+    </section>
+  
+  <section id="counter">
+    <div class="container">
+    <div class="row">
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="counting">
+    <div class="icon">
+    <i class="ti-announcement"></i>
+    </div>
+    <div class="desc">
+    <h2>Offers</h2>
+    <h1 class="counter" *ngIf="total_offers">{{total_offers}}</h1>
+    </div>
+    </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="counting">
+    <div class="icon">
+    <i class="ti-id-badge"></i>
+    </div>
+    <div class="desc">
+    <h2>Candidates</h2>
+    <h1 class="counter" *ngIf="total_candidates">{{total_candidates}}</h1>
+    </div>
+    </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="counting">
+    <div class="icon">
+    <i class="ti-briefcase"></i>
+    </div>
+    <div class="desc">
+    <h2>Recruiters</h2>
+    <h1 class="counter" *ngIf="total_recruiters">{{total_recruiters}}</h1>
+    </div>
+    </div>
+    </div>
+
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="counting">
+      <div class="icon">
+      <i class="ti-check-box"></i>
+      </div>
+      <div class="desc">
+      <h2>Applications</h2>
+      <h1 class="counter" *ngIf="total_applications">{{total_applications}}</h1>
+      </div>
+      </div>
+    </div>
+
+
+    </div>
+    </div>
+    </section>
+    
+<!-- 
+
+  <section class="clients section">
+  <div class="container">
+  <h2 class="section-title">
+  Clients & Partners
+  </h2>
+  <div class="row">
+  <div id="clients-scroller">
+  <div class="items">
+  <img src="assets/img/clients/img1.png" alt="">
+  </div>
+  <div class="items">
+  <img src="assets/img/clients/img2.png" alt="">
+  </div>
+  <div class="items">
+  <img src="assets/img/clients/img3.png" alt="">
+  </div>
+  <div class="items">
+  <img src="assets/img/clients/img4.png" alt="">
+  </div>
+  <div class="items">
+  <img src="assets/img/clients/img5.png" alt="">
+   </div>
+  <div class="items">
+  <img src="assets/img/clients/img6.png" alt="">
+  </div>
+  <div class="items">
+  <img src="assets/img/clients/img6.png" alt="">
+  </div>
+  <div class="items">
+  <img src="assets/img/clients/img6.png" alt="">
+  </div>
+  </div>
+  </div>
+  </div>
+  </section>
+  
+-->
+  

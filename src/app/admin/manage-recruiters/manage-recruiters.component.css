@@ -1,0 +1,7 @@
+.actions {
+    margin-right: 10px;
+    font-size: 20px;
+}
+.modal {
+    z-index: 100000 !important;
+}

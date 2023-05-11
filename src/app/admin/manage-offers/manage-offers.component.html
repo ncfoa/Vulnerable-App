@@ -1,0 +1,185 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="breadcrumb-wrapper">
+    <h2 class="product-title">Admin Board</h2>
+    <ol class="breadcrumb">
+    <li><a href="#"><i class="ti-home"></i> Home</a></li>
+    <li><a href="/admin" routerLink="/admin">Dashboard</a></li>
+    <li class="current">Manage Offers</li>
+    </ol>
+  
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+  
+  
+  <div id="content">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-3 col-sm-3 col-xs-12">
+    <div class="right-sideabr">
+    
+    <div class="inner-box">
+        <ul class="lest">
+            <li><a href="/admin" routerLink="/admin">Dashboard</a></li>
+            <li><a href="/admin/change-password" routerLink="/admin/change-password">Change Password</a></li>
+        </ul>
+        <ul class="lest item">
+            <li><a href="/admin/manage-candidates" routerLink="/admin/manage-candidates">Manage Candidates</a></li>
+            <li><a href="/admin/manage-recruiters" routerLink="/admin/manage-recruiters">Manage Recruiters</a></li>
+            <li><a class="active">Manage Offers</a></li>
+        </ul>
+    <ul class="lest">
+    <li><a href (click)="logout()">Logout</a></li>
+    </ul>
+    </div>
+    </div>
+    </div>
+  
+  
+    <div class="col-md-9 col-sm-9 col-xs-12">
+        <div class="job-alerts-item">
+        <h3 class="alerts-title">Manage Offers</h3>
+        
+        <div class="table-responsive row">
+            <table *ngIf="offers" class="table table-bordered table-hover" id="offers-table">
+                <thead class="thead-default thead-lg">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Company</th>
+                        <th>Type</th>
+                        <th>Category</th>
+                        <th>Keywords</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let offer of offers; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{offer.title}}</td>
+                        <td>{{offer.company.companyName}}</td>
+                        <td>{{offer.type}}</td>
+                        <td>{{offer.category}}</td>
+                        <td>{{offer.keywords}}</td>
+                        <td>
+                            <span class="badge alert-success badge-pill" *ngIf="offer.isApproved">Approved</span>
+                            <span class="badge alert-warning badge-pill" *ngIf="!offer.isApproved">Pending</span>
+                        </td>
+                        <td>
+                            <a class="actions" *ngIf="!offer.isApproved" href="#approveOfferModal{{offer._id}}" data-toggle="modal" data-target="approveOfferModal{{offer._id}}"><i class="ti-check-box"></i></a>
+                            <a class="actions" href="#deleteOfferModal{{offer._id}}" data-toggle="modal" data-target="deleteOfferModal{{offer._id}}"><i class="ti-trash"></i></a>
+                        </td>
+                        
+                    <!-- Approve offer Modal -->
+                    
+                    <div class="modal fade" id="approveOfferModal{{offer._id}}" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered" >
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h1>Approve offer</h1>
+                            </div>
+                            <div class="modal-body">
+                                <div class="page-ads box">
+                                <form class="form-ad" [formGroup]="offerForm" name="form" (ngSubmit)="f.form.valid && approve(offer._id)" #f="ngForm" novalidate>
+                                    
+                                    <div class="form-group">
+                                         <input type="hidden" class="form-control" formControlName="_id">
+                                    </div>
+                                    
+                                    <p>Are you sure you want to approve this offer?</p>
+                                                                        
+                                    <div class="modal-footer">
+                                    <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-common log-btn">Approve offer</button>
+                                    <br><br>
+
+                                    <div class="form-group">
+                                        <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isApproveFailed">
+                                          Approve offer failed! {{ errorMessage }}
+                                        </div>
+                                        <div class="alert alert-success" *ngIf="isSuccessful">
+                                            Offer approved successfully.
+                                          </div>
+                                    </div>
+                                    </div>
+                                    
+                            
+                                    </form>
+
+                                    </div>
+                                
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- End of approve offer modal -->
+
+                     <!-- Delete offer Modal -->
+                    
+                     <div class="modal fade" id="deleteOfferModal{{offer._id}}" tabindex="-1" *ngIf="offer._id">
+                        <div class="modal-dialog modal-dialog-centered" >
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h1>Delete offer</h1>
+                            </div>
+                            <div class="modal-body">
+                                <div class="page-ads box">
+                                <form class="form-ad" [formGroup]="offerForm" name="form" (ngSubmit)="f.form.valid && delete(offer._id)" #f="ngForm" novalidate>
+                                    
+                                    <div class="form-group">
+                                         <input type="hidden" class="form-control" formControlName="_id">
+                                    </div>
+                                    
+                                    <p>Are you sure you want to delete this offer?</p>
+						            <p class="text-danger"><small>This action cannot be undone.</small></p>                                  
+                                    
+                                    <div class="modal-footer">
+                                    <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-common log-btn">Delete offer</button>
+                                    <br><br>
+
+                                    <div class="form-group">
+                                        <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isDeleteFailed">
+                                          Delete offer failed! {{ errorMessage }}
+                                        </div>
+                                        <div class="alert alert-success" *ngIf="isSuccessful">
+                                            Offer deleted successfully.
+                                          </div>
+                                    </div>
+                                    </div>
+                                    
+                            
+                                    </form>
+
+                                    </div>
+                                
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- End of delete offer modal -->
+                    
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+        
+  
+  
+  

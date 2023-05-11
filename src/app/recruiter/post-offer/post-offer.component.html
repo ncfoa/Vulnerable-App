@@ -1,0 +1,159 @@
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="breadcrumb-wrapper">
+    <h2 class="product-title">Recruiter Board</h2>
+    <ol class="breadcrumb">
+    <li><a href="#"><i class="ti-home"></i> Home</a></li>
+    <li><a href="/recruiter" routerLink="/recruiter">Recruiter</a></li>
+    <li class="current">Post an offer</li>
+    </ol>
+    </div>
+    
+    </div>
+    </div>
+    </div>
+  </div>
+  
+  <div id="content">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-4 col-sm-4 col-xs-12">
+    <div class="right-sideabr">
+    <div class="inner-box">
+    <ul class="lest">
+    <li><a href="/recruiter" routerLink="/recruiter">My Profile</a></li>
+    <li><a href="/recruiter/edit-profile" routerLink="/recruiter/edit-profile">Edit Profile</a></li>
+    <li><a href="/recruiter/change-password" routerLink="/recruiter/change-password">Change Password</a></li>
+    </ul>
+    <ul class="lest item">
+    <li><a href="/recruiter/offers" routerLink="/recruiter/offers">Manage offers</a></li>
+    <li><a class="active">Post an offer</a></li>
+    </ul>
+    <ul class="lest">
+    <li><a href (click)="logout()">Logout</a></li>
+    </ul>
+    </div>
+    </div>
+    </div>
+
+    
+    <div class="col-md-8 col-sm-8 col-xs-12">
+        <div class="job-alerts-item">
+        <h3 class="alerts-title">Post an offer</h3>
+        
+    <div class="page-ads box">
+        <form class="form-ad" [formGroup]="offerForm" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+        
+        <div class="form-group">
+        <label class="control-label" for="textarea">Title</label>
+         <input type="text" class="form-control" formControlName="title">
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                <label class="control-label" for="textarea">Type</label>
+                <select class="form-select form-control" formControlName="type">
+                    <option value="Summer internship" selected >Summer internship</option>
+                    <option value="End of studies internship">End of studies internship</option>
+                </select>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <label class="control-label" for="textarea">Category</label>
+                    <select class="form-select form-control" formControlName="category">
+                        <option value="Information Technology" selected >Information Technology</option>
+                        <!--
+                        <option value="Finance & Banking">Finance & Banking</option>
+                        <option value="Sales & Marketing">Sales & Marketing</option>
+                        <option value="Healthcare & Fitness">Healthcare & Fitness</option>
+                        <option value="Art & Design">Art & Design</option>
+                        -->
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="textarea">Location</label>
+             <input type="text" class="form-control" formControlName="location">
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label" for="textarea">Start date</label>
+                    <input type="date" class="form-control" formControlName="startDate">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label" for="textarea">End date</label>
+                    <input type="date" class="form-control" formControlName="endDate">
+                </div>
+            </div>    
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label" for="textarea">Description</label>
+            <textarea class="form-control" rows="5" formControlName="description" ></textarea>
+        </div>
+
+        <div class="divider">
+            <h3>Keywords</h3>
+        </div>
+
+        <div formArrayName="keywords">
+            <div *ngFor="let keyword of myKeywords.controls; let keywordIndex=index">
+                <div class="form-group">
+                    <label class="control-label" for="textarea">Keyword</label>
+                    <input type="text" class="form-control" placeholder="e.g Angular, Java, Python..." formControlName="{{ keywordIndex }}">
+                </div>
+
+                <div class="add-post-btn">
+                    <div class="pull-right">
+                        <button type="button" (click)="deleteKeyword(keywordIndex)"><i class="ti-plus"></i> Delete this</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="add-post-btn">
+                <div class="pull-left">
+                    <button type="button" (click)="addKeyword()"><i class="ti-plus"></i> Add New Keyword</button>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <button class="btn btn-common log-btn">Submit offer</button>
+        <br><br>
+        <div class="form-group">
+            <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isOfferFailed">
+              Post offer failed! {{ errorMessage }}
+            </div>
+            <div class="alert alert-success" *ngIf="isSuccessful">
+                Offer posted successfully.
+              </div>
+        </div>
+
+        </form>
+        
+        </div>
+
+    </div>
+    </div>
+
+    </div>
+    </div>
+    </div>
+  
+
+
+
